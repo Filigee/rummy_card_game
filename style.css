@@ -1,0 +1,8 @@
+*{
+    background: green;
+}
+
+.cards > *{
+    border: 5px solid purple;
+    background: blueviolet;
+}
