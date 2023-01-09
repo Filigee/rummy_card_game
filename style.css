@@ -1,8 +1,23 @@
 *{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
     background: green;
+}
+
+.deck{
+    display: flex;
+}
+
+.deck > *{
+    border: 5px solid orangered;
+    background: orange;
+    width: 226px;
+    height: 314px;
 }
 
 .cards > *{
     border: 5px solid purple;
-    background: blueviolet;
+    background: purple;
+
 }

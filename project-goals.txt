@@ -1,0 +1,9 @@
+Project Aim --
+
+Create a responsive, single-player version of the card game Rummy using the public API
+at deckofcardsapi.com 
+
+Projects learning goals --
+1. Create mobile/desktop responsive design
+2. Successfully implement and set up APIs using the documentation of decksofcardsapi.com
+3. Use BEM class naming conventions for CSS/HTML styling
