@@ -16,8 +16,7 @@
     height: 314px;
 }
 
-.cards > *{
-    border: 5px solid purple;
-    background: purple;
-
+.cards > .card{
+    border: 5px solid blue;
+    background: blue;
 }
