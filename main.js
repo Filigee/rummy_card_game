@@ -4,6 +4,7 @@ let card_array = [...document.querySelectorAll(".card")]
 let cards_remaining = document.getElementById("cards-remaining")
 let turn_pile = document.getElementById("turn-pile")
 let current_cards_hand = 0
+let current_cards_remaining 
 
 card_array.push(document.querySelector(".draw_card"))
 card_array[card_array.length - 1].classList.add("card")
@@ -15,6 +16,8 @@ document.getElementById("deck").addEventListener("click", () => {
     drawCard(document.querySelector(".draw_card"))
 })
 document.querySelector(".draw_card").addEventListener("click", addToTurnPile)
+document.getElementById("turn-pile").addEventListener("click", drawCardTurnPile)
+document.getElementById("re-shuffle").addEventListener("click", reShuffle)
 
 // -------- FETCH GET REQUESTS ------------
 
@@ -32,6 +35,7 @@ function startGame(){
         }
         current_cards_hand = 7
         deck_id = data.deck_id
+        console.log(deck_id)
         cards_remaining.innerText = "Cards left: " + data.remaining
         drawCard(turn_pile)
     })
@@ -40,7 +44,7 @@ function startGame(){
 // Draw a card from the deck
 
 function drawCard(deck){
-    if(current_cards_hand == 8){
+    if(current_cards_hand == 8 || current_cards_remaining == 0){
         return
     }
     fetch(`https://deckofcardsapi.com/api/deck/${deck_id}/draw/?count=1`)
@@ -57,6 +61,7 @@ function drawCard(deck){
         deck.data_suit = data.cards[0].suit
         deck.data_code = data.cards[0].code
         cards_remaining.innerText = "Cards left: " + data.remaining
+        current_cards_remaining = data.remaining
     })
 }
 
@@ -66,6 +71,39 @@ function turnPile(card_code){
     .then(response => response.json())
     
 }
+
+function turnPileDraw(){
+    fetch(`https://deckofcardsapi.com/api/deck/${deck_id}/pile/${turn_pile_deck_id}/draw/?count=1 `)
+    .then(response => response.json())
+}
+
+// Return cards from the turn pile to the main deck and shuffle them
+function reShuffle(){
+    if(current_cards_remaining != 0){
+        return
+    }
+
+    fetch(`https://deckofcardsapi.com/api/deck/${deck_id}/pile/${turn_pile_deck_id}/shuffle/`)
+    .then(response => response.json())
+    .then(data => console.log("Shuffled"))
+
+    fetch(`https://deckofcardsapi.com/api/deck/${deck_id}/pile/${turn_pile_deck_id}/return/`)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+        current_cards_remaining = data.remaining
+        cards_remaining.innerText = "Cards left: " + data.remaining
+        turn_pile.src = ""
+        turn_pile.data_value = ""
+        turn_pile.data_suit = ""
+        turn_pile.data_code = ""
+        drawCard(turn_pile)
+    })
+
+    
+}
+
+// ----------- FETCH GET REQUESTS END ---------------
 
 // Check win conditions
 
@@ -78,6 +116,9 @@ function checkWin(){
 
     // ------------ FIX THIS -----------------
     // What happens if low run of 4 and high run of 3? Code doesn't work out because of the split...
+    if(current_cards_hand == 0){
+        return
+    }
 
     let firstThree = [...document.querySelectorAll(".card")].filter(card => !card.className.includes("draw_card"))
     const lastFour = firstThree.splice(3)
@@ -131,7 +172,7 @@ function convertCardValues(card){
         return Number(card)
 }
 
-// Dragging and swapping card positions
+// ----------- DRAG AND SWAP CARD POSITIONS ------------------
 
 card_array.forEach(card => {
     card.addEventListener("dragstart", dragStart)
@@ -189,26 +230,48 @@ function drop(e){
     cards.insertBefore(secondCard, nodeList[firstCardPosition])
 }
 
+// ----------- DRAG AND SWAP CARD POSITIONS END ------------------
+
 function addToTurnPile(){
     if(current_cards_hand != 8){
         return
     }
-    const draw_card = document.querySelector(".draw_card")
+    const current_draw_card = document.querySelector(".draw_card")
     
-    turnPile(draw_card.data_code)
-    turn_pile.src = draw_card.src
-    turn_pile.data_value = draw_card.data_value
-    turn_pile.data_suit = draw_card.data_suit
-    turn_pile.data_code = draw_card.data_code
-
-    document.querySelector(".draw_card").src = ""
-    document.querySelector(".draw_card").data_value = ""
-    document.querySelector(".draw_card").data_suit = ""
-    document.querySelector(".draw_card").data_code = ""
-
+    turnPile(current_draw_card.data_code)
+    turnPileAndDrawCardSwap(turn_pile, current_draw_card)
+    
     current_cards_hand -= 1
 
 }
+
+function drawCardTurnPile(){
+    if(current_cards_hand == 8){
+        return
+    }
+
+    const current_turn_pile = document.getElementById("turn-pile")
+    turnPileDraw()
+    turnPileAndDrawCardSwap(document.querySelector(".draw_card"), current_turn_pile)
+
+    current_cards_hand += 1
+
+}
+
+// Helper function for turn pile and draw card swap
+
+function turnPileAndDrawCardSwap(card_new_location, card_to_move){
+    card_new_location.src = card_to_move.src
+    card_new_location.data_value = card_to_move.data_value
+    card_new_location.data_suit = card_to_move.data_suit
+    card_new_location.data_code = card_to_move.data_code
+
+    card_to_move.src = ""
+    card_to_move.data_value = ""
+    card_to_move.data_suit = ""
+    card_to_move.data_code = ""
+}
+
 
 
 
