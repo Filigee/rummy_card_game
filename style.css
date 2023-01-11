@@ -16,7 +16,12 @@
     height: 314px;
 }
 
-.cards > .card{
+.cards > .cards--colour{
     border: 5px solid blue;
     background: blue;
+}
+
+.cards > .draw_card {
+    border: 5px solid orangered;
+    background: orangered;
 }
