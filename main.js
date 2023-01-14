@@ -35,7 +35,6 @@ function startGame(){
         }
         current_cards_hand = 7
         deck_id = data.deck_id
-        console.log(deck_id)
         cards_remaining.innerText = "Cards left: " + data.remaining
         drawCard(turn_pile)
         setInterval(timer, 1000)
@@ -127,8 +126,6 @@ function checkWin(){
     firstThree.sort((a, b) => a.data_value - b.data_value)
     lastFour.sort((a, b) => a.data_value - b.data_value)
 
-    console.log(firstThree)
-    console.log(lastFour)
     
     function winConditionSameCard(array){
         for(let i = 0; i < array.length - 1; i++){
