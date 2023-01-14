@@ -38,6 +38,7 @@ function startGame(){
         console.log(deck_id)
         cards_remaining.innerText = "Cards left: " + data.remaining
         drawCard(turn_pile)
+        setInterval(timer, 1000)
     })
 }
 
@@ -272,6 +273,30 @@ function turnPileAndDrawCardSwap(card_new_location, card_to_move){
     card_to_move.data_code = ""
 }
 
+let seconds = 0
+let minutes = 0
+function timer(){
+    seconds++
+
+    if(seconds >= 60){
+        seconds = 0
+        minutes++ 
+    }
+
+    if(seconds >= 10 && minutes >= 10){
+        document.getElementById("timer").innerHTML = `${minutes}:${seconds}`
+    }
+    else if(seconds >= 10 && minutes < 10){
+        document.getElementById("timer").innerHTML = `0${minutes}:${seconds}`
+    }
+    else if(seconds < 10 && minutes >= 10){
+        document.getElementById("timer").innerHTML = `${minutes}:0${seconds}`
+    }
+    else{
+        document.getElementById("timer").innerHTML = `0${minutes}:0${seconds}`
+    }
+
+}
 
 
 
