@@ -38,6 +38,10 @@
     background: var(--colour--orange);
 }
 
+.button:hover{
+    opacity: 70%;
+}
+
 .button__wrapper{
     display: flex;
     flex-direction: column;
