@@ -1,27 +1,101 @@
+:root{
+    --colour--dark-blue: #243763;
+    --colour--orange: #FF6E31;
+    --colour--biege: #FFEBB7;
+    --colour--brown: #AD8E70;
+
+    --ff: "Roboto Slab", sans-serif;
+
+    --fw--medium: 500;
+}
+
 *{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    background: green;
+    background: var(--colour--dark-blue);
+    font-family: var(--ff);
+    font-weight: var(--fw--medium);
+    text-align: center;
+}
+
+.container{
+    width: 80vw;
+    margin: 0 auto;
+}
+
+.button-deck__wrapper{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
+}
+
+.button{
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border-style: dotted;
+    background: var(--colour--orange);
+}
+
+.button__wrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+.timer{
+    font-size: 40px;
 }
 
 .deck{
+    margin-right: 20px;
+}
+
+.deck, .cards{
     display: flex;
+    justify-content: center;
+}
+
+.deck__cards{
+    margin-right: 10px;
+    text-align: center;
+}
+
+.deck__deck > span{
+    display: flex;
+    height: 80%;
+    justify-content: center;
+    align-items: center;
+    background: var(--colour--brown);
+}
+
+.cards{
+    width: 900px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.cards__card{
+    margin-top: 10px;
+    margin-right: 10px;
 }
 
 .deck > *{
-    border: 5px solid orangered;
-    background: orange;
-    width: 226px;
-    height: 314px;
+    border: 5px solid var(--colour--orange);
+    border-radius: 10px;
+    background: var(--colour--brown);
+    width: 204px;
+    height: 283px;
 }
 
-.cards > .cards--colour{
-    border: 5px solid blue;
-    background: blue;
+.cards--colour{
+    border: 5px solid var(--colour--biege);
+    border-radius: 10px;
+    background: var(--colour--biege);
 }
 
 .cards > .draw_card {
-    border: 5px solid orangered;
-    background: orangered;
+    border: 5px solid var(--colour--orange);
+    border-radius: 10px;
+    background: var(--colour--orange);
 }

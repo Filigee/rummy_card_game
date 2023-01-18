@@ -5,35 +5,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;500&display=swap" rel="stylesheet">
     <title>Let's play: Rummy!</title>
 </head>
 <body>
+    <div class="container">
+        
+        <h1 id="win-loss-state"></h1>
 
-    <button id="start_game">Start Game!</button>
+        <div class="button-deck__wrapper">
+            <div class="button__wrapper">
+                <button id="start_game" class="button">Start Game!</button>
+                <button id="check_win" class="button" title="Group winning 3 cards and winning 4 cards to check a win">Rummy?!</button>
+                <button id="re-shuffle" class="button">Re-Shuffle!</button>
+                <div id="timer" class="timer">00:00</div>
+            </div>
+            <div class="deck">
+                <img src="" data_value="" data_suit="" data_code="" alt="TURN-PILE" id="turn-pile" class="deck__turn-pile deck__cards" width="204px" height="283px">
+                <div id="deck" class="deck__deck deck__cards" width="204px" height="283px">DECK<span id="cards-remaining"></span></div>
+            </div>
+        </div>
+        
 
-    <button id="check_win">Rummy?!</button>
-
-    <button id="re-shuffle">Re-Shuffle!</button>
-
-    <div id="timer">00:00</div>
-
-    <div class="deck">
-        <img src="" data_value="" data_suit="" data_code="" alt="" id="turn-pile" class="deck__turn-pile" width="226px" height="314px">
-        <div id="deck" class="deck__deck" width="226px" height="314px">DECK<span id="cards-remaining"></span></div>
+        <div class="cards">
+            <img src="" data_value="" data_suit="" data_code="" alt="ONE" id="one" class="card | cards--colour  cards__card" width="204px" height="283px">
+            <img src="" data_value="" data_suit="" data_code="" alt="TWO" id="two" class="card | cards--colour cards__card" width="204px" height="283px">
+            <img src="" data_value="" data_suit="" data_code="" alt="THREE" id="three" class="card | cards--colour cards__card" width="204px" height="283px">
+            <img src="" data_value="" data_suit="" data_code="" alt="DRAW CARD" id="draw_card" class="draw_card | cards__card" width="204px" height="283px">
+            <div></div>
+            <img src="" data_value="" data_suit="" data_code="" alt="FOUR" id="four" class="card | cards--colour cards__card" width="204px" height="283px">
+            <img src="" data_value="" data_suit="" data_code="" alt="FIVE" id="five" class="card | cards--colour cards__card" width="204px" height="283px">
+            <img src="" data_value="" data_suit="" data_code="" alt="SIX" id="six" class="card | cards--colour cards__card" width="204px" height="283px">
+            <img src="" data_value="" data_suit="" data_code="" alt="SEVEN" id="seven" class="card | cards--colour cards__card" width="204px" height="283px">
+        </div>
     </div>
-
-    <div class="cards">
-        <img src="" data_value="" data_suit="" data_code="" alt="" id="one" class="card | cards--colour  cards__card-one" width="226px" height="314px">
-        <img src="" data_value="" data_suit="" data_code="" alt="" id="two" class="card | cards--colour cards__card-two" width="226px" height="314px">
-        <img src="" data_value="" data_suit="" data_code="" alt="" id="three" class="card | cards--colour cards__card-three" width="226px" height="314px">
-        <img src="" data_value="" data_suit="" data_code="" alt="" id="draw_card" class="draw_card | " width="226px" height="314px">
-        <div></div>
-        <img src="" data_value="" data_suit="" data_code="" alt="" id="four" class="card | cards--colour cards__card-four" width="226px" height="314px">
-        <img src="" data_value="" data_suit="" data_code="" alt="" id="five" class="card | cards--colour cards__card-five" width="226px" height="314px">
-        <img src="" data_value="" data_suit="" data_code="" alt="" id="six" class="card | cards--colour cards__card-six" width="226px" height="314px">
-        <img src="" data_value="" data_suit="" data_code="" alt="" id="seven" class="card | cards--colour cards__card-seven" width="226px" height="314px">
-
-    </div>
+    
 
 
     <script src="main.js"></script>

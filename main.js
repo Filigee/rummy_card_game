@@ -5,6 +5,8 @@ let cards_remaining = document.getElementById("cards-remaining")
 let turn_pile = document.getElementById("turn-pile")
 let current_cards_hand = 0
 let current_cards_remaining 
+let startTimer
+
 
 card_array.push(document.querySelector(".draw_card"))
 card_array[card_array.length - 1].classList.add("card")
@@ -37,7 +39,7 @@ function startGame(){
         deck_id = data.deck_id
         cards_remaining.innerText = "Cards left: " + data.remaining
         drawCard(turn_pile)
-        setInterval(timer, 1000)
+        startTimer = setInterval(timer, 1000)
     })
 }
 
@@ -147,11 +149,15 @@ function checkWin(){
 
     if((winConditionSameCard(firstThree) || winConditionRun(firstThree)) && (winConditionSameCard(lastFour) || winConditionRun(lastFour)))
     {
-        console.log("You win")
+        let time = document.getElementById("timer").innerText
+        document.getElementById("win-loss-state").innerText = `You Win! Your time was ${time}`
+        clearInterval(startTimer)
+        seconds = 0
+        minutes = 0
     }
     else
     {
-        console.log("You lose")
+        document.getElementById("win-loss-state").innerText = "You haven't won just yet..."
     }
 }
 
