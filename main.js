@@ -218,11 +218,13 @@ function drop(e){
 
         secondCard.classList.remove("cards--colour")
         secondCard.classList.add("draw_card")
+        secondCard.alt = "DRAW CARD"
         secondCard.addEventListener("click", addToTurnPile)
     }
     else if(secondCard.className.includes("draw_card")){
         firstCard.classList.add("draw_card")
         firstCard.classList.remove("cards--colour")
+        firstCard.alt = "DRAW CARD"
         firstCard.addEventListener("click", addToTurnPile)
 
         secondCard.classList.add("cards--colour")
