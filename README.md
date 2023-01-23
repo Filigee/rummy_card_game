@@ -9,7 +9,7 @@ This is a single player version of the card game 'Rummy' that I made to practise
 
 **Tech used:** HTML, CSS, JavaScript
 
-I made this game using the deckofcardsapi.com
+I made this game using the <a href="deckofcardsapi.com">
 
 ## Optimizations
 *(optional)*
